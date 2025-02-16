@@ -25,7 +25,8 @@ clock = pygame.time.Clock()
 
 def draw_cell(position, color, border=True):
     """Draws a cell at the given position with the specified color
-    and optional border."""
+    and optional border.
+    """
     rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
     pygame.draw.rect(screen, color, rect)
     if border:
