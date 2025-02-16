@@ -24,7 +24,8 @@ clock = pygame.time.Clock()
 
 
 def draw_cell(position, color, border=True):
-    """Draws a cell at the given position with the specified color and optional border."""
+    """Draws a cell at the given position with the specified color
+    and optional border."""
     rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
     pygame.draw.rect(screen, color, rect)
     if border:
@@ -47,7 +48,7 @@ class Apple(GameObject):
     """Represents an apple in the game."""
 
     def __init__(self, occupied_positions=None):
-        """Initializes the apple at a random position not occupied by the snake."""
+        """Initializes the apple at a random, unoccupied position."""
         super().__init__((0, 0), APPLE_COLOR)
         self.randomize_position(occupied_positions)
 
