@@ -105,7 +105,10 @@ class Snake(GameObject):
 
         self.positions.insert(0, new_head)
         # Хвост убираем, если длина превысила заданную; иначе None
-        self.last = self.positions.pop() if len(self.positions) > self.length else None
+        if len(self.positions) > self.length:
+            self.last = self.positions.pop()
+        else:
+            self.last = None
 
     def draw(self):
         """Draws the snake on the screen."""
@@ -163,7 +166,6 @@ def handle_keys(game_object):
 def main():
     """Main function that runs the game loop and updates the game state."""
     pygame.init()
-    # Передаём позицию центра экрана (можно было оставить и по умолчанию)
     snake = Snake(position=SNAKE_START_POSITION)
     apple = Apple(occupied_positions=snake.positions)
     screen.fill(BOARD_BACKGROUND_COLOR)
