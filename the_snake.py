@@ -1,4 +1,5 @@
 import random
+
 import pygame
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
@@ -48,7 +49,6 @@ class GameObject:
 
     def draw(self):
         """Draws the game object."""
-        # По замечанию: при наличии docstring-а pass не нужен
         ...
 
 
@@ -98,7 +98,7 @@ class Snake(GameObject):
         x, y = self.get_head_position()
         dx, dy = self.direction
 
-        # Обеспечиваем выход за границу с переносом на противоположную сторону
+        # Переносим змейку на противоположную сторону, если вышла за границы
         new_x = (x + dx * GRID_SIZE) % SCREEN_WIDTH
         new_y = (y + dy * GRID_SIZE) % SCREEN_HEIGHT
         new_head = (new_x, new_y)
@@ -163,10 +163,11 @@ def handle_keys(game_object):
 def main():
     """Main function that runs the game loop and updates the game state."""
     pygame.init()
-    # При создании змейки явно передаём позицию центра экрана (можно было оставить и по умолчанию)
+    # Передаём позицию центра экрана (можно было оставить и по умолчанию)
     snake = Snake(position=SNAKE_START_POSITION)
     apple = Apple(occupied_positions=snake.positions)
     screen.fill(BOARD_BACKGROUND_COLOR)
+
     while True:
         clock.tick(SPEED)
         handle_keys(snake)
@@ -190,4 +191,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
